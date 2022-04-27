@@ -1,0 +1,63 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+</head>
+<body>
+<table id="table1" width="500"  >
+<tr><td>1</td><td><input type="radio" name="radio"></td><td><input type="text" value="0"/></td><td><input type="text" value="0"/></td><td><input type="text" value="0"/></td></tr>
+</table>
+<input type="button" value="新增" onclick="addrow('table1')"/>
+<input type="button" value="刪除" onclick="deleterow('table1')"/>
+<input type="button" value="上移" onclick="toprow('table1')"/>
+<input type="button" value="下移" onclick="bottomaddrow('table1')"/>
+<script type="text/javascript">
+    function addrow(id){
+    $("#"+id).append("<tr><td>1</td><td><input type=\"radio\" name=\"radio\"><td><input type=\"text\" value=\"\"/></td><td><input type=\"text\"  value=\"\"/></td><td><input type=\"text\" value=\"\"/></td></tr>");
+    Sequence()
+    }
+    function deleterow(id)
+    {
+    //alert($("#"+id+" tr").find("input[name='radio']:checked").val());
+    var tr=$("#"+id+" tr").find("input[name='radio']:checked");
+    if(tr.val()=="on"){
+    tr.parent().parent().remove();
+    Sequence()
+    }
+    else{alert("請選擇要刪除的項");}
+    }
+    function toprow(id){
+    var tr=$("#"+id+" tr").find("input[name='radio']:checked");
+    var btr=tr.parent().parent();
+    var pretr=btr.prev();
+    if(tr.val()=="on"){
+    btr.after(pretr);
+    Sequence()
+    }
+    else{alert("請選擇要上移的項")}
+    }
+    function bottomaddrow(id)
+    {
+    var tr=$("#"+id+" tr").find("input[name='radio']:checked");
+    var btr=tr.parent().parent();
+    var pretr=btr.next();
+    if(tr.val()=="on"){
+    btr.before(pretr);
+    Sequence();
+    }
+    else{alert("請選擇要下移的項")}
+    
+    }
+    
+    function Sequence()
+    {
+     var tr=$("#table1").find("tr").length;
+    var xuhao=$("#table1").find("tr").find("td").eq("0");
+    for(var i=0;i<tr;i++)
+    {
+    $("#table1").find("tr").eq(i).find("td").eq("0").text(i+1);
+    }
+    }
+    </script>
+</body>
+</html>

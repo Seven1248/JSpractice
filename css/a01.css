@@ -1,0 +1,20 @@
+#header {
+    margin: auto;
+    font-size: 2em;
+}
+#button2{
+    color:aqua;
+    size:2px;
+    /* display: none; */
+}
+#button2:hover{
+    size:10em;
+}
+#button2:hover .form1{
+    display: block;
+}
+
+
+.noneDisplay{
+    display: none;
+}
